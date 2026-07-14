@@ -504,9 +504,9 @@ function renderQuestion() {
   const optionsHtml = q.options.map((opt) => {
     let cls = "option-btn";
     if (state.revealed) {
-      if (opt.type === state.selected && opt.type === "socratic") cls += " selected-correct";
-      else if (opt.type === state.selected && opt.type !== "socratic") cls += " selected-wrong";
-      else if (opt.type === "socratic") cls += " selected-correct";
+      // B 版：只亮使用者選的那個（選對＝綠、選錯＝紅），其餘淡出；
+      // 各選項下方的型標籤仍會顯示，用來讓人看懂每個選項屬哪型。
+      if (opt.type === state.selected) cls += (opt.type === "socratic") ? " selected-correct" : " selected-wrong";
       else cls += " dimmed";
     }
     const tag = state.revealed
