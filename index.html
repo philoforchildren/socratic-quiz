@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你是「句點王」還是「產婆」？蘇格拉底式提問測驗｜小朱媽媽的哲學飯桌</title>
+
+<!-- Open Graph / 社群連結卡片 -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="小朱媽媽的哲學飯桌">
+<meta property="og:title" content="你是「句點王」還是「產婆」？">
+<meta property="og:description" content="三個日常場景，測出你的蘇格拉底式提問能力。孩子在你這裡學到的，是「我可以想清楚」。小朱媽媽的哲學飯桌出品。">
+<meta property="og:url" content="https://philoforchildren.github.io/socratic-quiz/">
+<meta property="og:image" content="https://philoforchildren.github.io/socratic-quiz/cover.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你是「句點王」還是「產婆」？">
+<meta name="twitter:description" content="三個日常場景，測出你的蘇格拉底式提問能力。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Serif TC', 'Georgia', serif;
+  background: linear-gradient(135deg, #fdf6ec 0%, #f5ede0 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.quiz-card {
+  background: #fffaf4;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(100, 60, 20, 0.12);
+  max-width: 520px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.quiz-header {
+  background: #2d6a4f;
+  padding: 28px 32px 24px;
+  position: relative;
+}
+
+.quiz-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  color: #d8f3dc;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  font-family: sans-serif;
+}
+
+.quiz-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.quiz-subtitle {
+  color: #b7e4c7;
+  font-size: 13px;
+  margin-top: 8px;
+  font-family: sans-serif;
+}
+
+.progress-bar {
+  background: rgba(255,255,255,0.15);
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: #d8f3dc;
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.quiz-body {
+  padding: 28px 28px 24px;
+}
+
+.scene-tag {
+  display: inline-block;
+  background: #f0f7f4;
+  color: #2d6a4f;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.child-quote {
+  background: #fff;
+  border-left: 3px solid #2d6a4f;
+  border-radius: 0 12px 12px 0;
+  padding: 14px 18px;
+  font-size: 20px;
+  color: #3d2b1f;
+  font-weight: 600;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  line-height: 1.5;
+}
+
+.options-label {
+  font-size: 12px;
+  color: #a08060;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  font-family: sans-serif;
+}
+
+.option-btn {
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border: 1.5px solid #e8ddd0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.2s ease;
+  font-family: 'Noto Serif TC', serif;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: #2d6a4f;
+  background: #f5faf7;
+  transform: translateX(3px);
+}
+
+.option-btn:disabled {
+  cursor: default;
+}
+
+.option-label-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f0ece6;
+  color: #7a5c3a;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: sans-serif;
+  transition: all 0.2s;
+}
+
+.option-text {
+  font-size: 14px;
+  color: #4a3728;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.option-type-tag {
+  font-size: 11px;
+  font-family: sans-serif;
+  padding: 2px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.option-btn.selected-correct {
+  border-color: #2d6a4f;
+  background: #f0faf5;
+}
+
+.option-btn.selected-correct .option-label-circle {
+  background: #2d6a4f;
+  color: #fff;
+}
+
+.option-btn.selected-wrong {
+  border-color: #c0392b;
+  background: #fdf5f5;
+}
+
+.option-btn.selected-wrong .option-label-circle {
+  background: #c0392b;
+  color: #fff;
+}
+
+.option-btn.dimmed {
+  opacity: 0.45;
+}
+
+.next-btn {
+  width: 100%;
+  background: #2d6a4f;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 1px;
+}
+
+.next-btn:hover {
+  background: #1b4332;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(45,106,79,0.3);
+}
+
+/* RESULT STYLES */
+
+.result-emoji {
+  font-size: 52px;
+  margin-bottom: 12px;
+  display: block;
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.result-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2d1f14;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.result-desc {
+  background: #f8f3ec;
+  border-radius: 14px;
+  padding: 18px 20px;
+  font-size: 15px;
+  color: #4a3728;
+  line-height: 1.8;
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.result-hint {
+  background: #f0faf5;
+  border: 1px solid #b7e4c7;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: #2d6a4f;
+  line-height: 1.7;
+  text-align: left;
+  font-family: sans-serif;
+  margin-bottom: 24px;
+}
+
+.result-hint::before {
+  content: "💡 ";
+}
+
+.golden-section {
+  background: #2d6a4f;
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+
+.golden-label {
+  color: #b7e4c7;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-family: sans-serif;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.golden-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.golden-list {
+  list-style: none;
+}
+
+.golden-list li {
+  color: #d8f3dc;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.golden-list li:last-child {
+  border-bottom: none;
+}
+
+.golden-list li::before {
+  content: "›";
+  color: #74c69d;
+  font-size: 18px;
+}
+
+.cta-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #2d6a4f;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.cta-btn:hover {
+  background: #1b4332;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(45,106,79,0.3);
+}
+
+.reset-btn {
+  width: 100%;
+  background: transparent;
+  color: #2d6a4f;
+  border: 1.5px solid #2d6a4f;
+  border-radius: 12px;
+  padding: 13px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.reset-btn:hover {
+  background: #f0faf5;
+}
+
+.q-counter {
+  font-size: 12px;
+  color: #b7e4c7;
+  font-family: sans-serif;
+  margin-top: 6px;
+}
+
+.quiz-footer {
+  text-align: center;
+  padding: 4px 0 22px;
+  font-size: 11px;
+  color: #a08060;
+  font-family: sans-serif;
+  letter-spacing: 1.5px;
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-card" id="app"></div>
+
+<script>
+const questions = [
+  {
+    id: 1,
+    scene: "早上出門前",
+    quote: "「我不想去上學。」",
+    options: [
+      { label: "A", type: "authority", text: "「不行，你必須去，沒得選。快點穿鞋。」" },
+      { label: "B", type: "soup", text: "「上學沒那麼可怕啦！你一定可以的！」" },
+      { label: "C", type: "over", text: "「不想去就不去吧⋯⋯媽媽也覺得上學好累喔。」" },
+      { label: "D", type: "socratic", text: "「是今天有什麼事，讓你不想去嗎？」" },
+    ],
+  },
+  {
+    id: 2,
+    scene: "寫作業的時候",
+    quote: "「這題好難，我做不到。」",
+    options: [
+      { label: "A", type: "authority", text: "「不會就繼續想，坐在那裡想清楚再來問我。」" },
+      { label: "B", type: "soup", text: "「你這麼聰明，一定可以的！再試一次！」" },
+      { label: "C", type: "over", text: "「好難喔⋯⋯來，媽媽幫你寫。」" },
+      { label: "D", type: "socratic", text: "「哪個部分讓你覺得卡住了？」" },
+    ],
+  },
+  {
+    id: 3,
+    scene: "放學回家後",
+    quote: "「他們都不跟我玩，我沒有朋友。」",
+    options: [
+      { label: "A", type: "authority", text: "「那你有沒有主動找別人？要自己先開口！」" },
+      { label: "B", type: "soup", text: "「沒關係，你這麼好，一定會有朋友的！」" },
+      { label: "C", type: "over", text: "「好可憐⋯⋯媽媽都替你難過。」" },
+      { label: "D", type: "socratic", text: "「你覺得他們今天為什麼沒有找你？」" },
+    ],
+  },
+];
+
+const typeLabels = {
+  authority: "權威壓制",
+  soup: "敷衍雞湯",
+  over: "過度同情",
+  socratic: "蘇格拉底式引導",
+};
+
+const typeColors = {
+  authority: "#c0392b",
+  soup: "#e67e22",
+  over: "#8e44ad",
+  socratic: "#2d6a4f",
+};
+
+const results = {
+  0: {
+    title: "句點王",
+    emoji: "🔴",
+    desc: "你的回應把對話的門帶上了。孩子感覺到了——說下去也沒有用。這不是你的錯，大多數人都是這樣被養大的。",
+    hint: "下次試試：先停一秒，把「你應該⋯⋯」換成一個問句。",
+  },
+  1: {
+    title: "句點王（偶爾開門）",
+    emoji: "🟠",
+    desc: "你有一次打開了一扇門。孩子可能沒說什麼，但那個問號在他心裡留下來了。",
+    hint: "再多一點耐心，讓問題比答案更長一點。",
+  },
+  2: {
+    title: "產婆學徒",
+    emoji: "🟡",
+    desc: "你已經有引導的直覺了。兩次，你選擇了讓孩子自己找答案，而不是替他找。這個直覺值得被練大。",
+    hint: "繼續練習：問完之後，真的等。沉默是允許孩子思考的空間。",
+  },
+  3: {
+    title: "產婆",
+    emoji: "🟢",
+    desc: "你已經在幫孩子接生想法了。你知道，好的問題比好的答案更有力量。孩子在你這裡學到的，是「我可以想清楚」。",
+    hint: "你做到的，不只是溝通技巧——是讓孩子相信自己的思考。",
+  },
+};
+
+const goldenQuestions = [
+  "你覺得呢？",
+  "是什麼讓你這樣覺得？",
+  "如果換成是你，你會怎麼辦？",
+  "還有別的可能嗎？",
+  "這件事，你最在意的是哪一部分？",
+];
+
+const FB_URL = "https://www.facebook.com/profile.php?id=61577476978719&locale=zh_TW";
+
+const app = document.getElementById("app");
+let state = { currentQ: 0, answers: [], selected: null, revealed: false, showResult: false };
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function render() {
+  if (state.showResult) renderResult();
+  else renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[state.currentQ];
+  const optionsHtml = q.options.map((opt) => {
+    let cls = "option-btn";
+    if (state.revealed) {
+      if (opt.type === state.selected && opt.type === "socratic") cls += " selected-correct";
+      else if (opt.type === state.selected && opt.type !== "socratic") cls += " selected-wrong";
+      else if (opt.type === "socratic") cls += " selected-correct";
+      else cls += " dimmed";
+    }
+    const tag = state.revealed
+      ? `<div class="option-type-tag" style="background:${typeColors[opt.type]}18;color:${typeColors[opt.type]};margin-top:6px;display:inline-block;">${typeLabels[opt.type]}</div>`
+      : "";
+    return `<button class="${cls}" data-type="${opt.type}" ${state.revealed ? "disabled" : ""}>
+        <div class="option-label-circle">${opt.label}</div>
+        <div style="flex:1"><div class="option-text">${esc(opt.text)}</div>${tag}</div>
+      </button>`;
+  }).join("");
+
+  const nextHtml = state.revealed
+    ? `<button class="next-btn" id="nextBtn">${state.currentQ + 1 < questions.length ? "下一題 →" : "看結果 →"}</button>`
+    : "";
+
+  app.innerHTML = `
+    <div class="quiz-header">
+      <div class="quiz-badge">小朱媽媽的哲學飯桌</div>
+      <div class="quiz-title">你是「句點王」<br>還是「產婆」？</div>
+      <div class="quiz-subtitle">三個場景，測出你的蘇格拉底式提問能力</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${(state.currentQ / questions.length) * 100}%"></div></div>
+      <div class="q-counter">第 ${state.currentQ + 1} 題，共 ${questions.length} 題</div>
+    </div>
+    <div class="quiz-body">
+      <div class="scene-tag">場景 ${q.id}：${esc(q.scene)}</div>
+      <div class="child-quote">孩子說：${esc(q.quote)}</div>
+      <div class="options-label">如果是你，你會說⋯⋯</div>
+      ${optionsHtml}
+      ${nextHtml}
+    </div>`;
+
+  if (!state.revealed) {
+    app.querySelectorAll(".option-btn").forEach((b) => {
+      b.addEventListener("click", () => {
+        state.selected = b.dataset.type;
+        state.revealed = true;
+        render();
+      });
+    });
+  } else {
+    document.getElementById("nextBtn").addEventListener("click", handleNext);
+  }
+}
+
+function handleNext() {
+  state.answers.push(state.selected);
+  if (state.currentQ + 1 < questions.length) {
+    state.currentQ += 1;
+    state.selected = null;
+    state.revealed = false;
+    render();
+  } else {
+    state.showResult = true;
+    render();
+  }
+}
+
+function renderResult() {
+  const score = state.answers.filter((a) => a === "socratic").length;
+  const result = results[score];
+  const goldenHtml = goldenQuestions.map((g) => `<li>${esc(g)}</li>`).join("");
+
+  app.innerHTML = `
+    <div class="quiz-header" style="background:#1b4332;padding-bottom:28px;">
+      <div class="quiz-badge">測驗結果</div>
+      <div class="quiz-title">你拿到了 ${score} / 3 個蘇格拉底式回應</div>
+    </div>
+    <div class="quiz-body">
+      <div style="padding:24px 0 16px;text-align:center;">
+        <span class="result-emoji">${result.emoji}</span>
+        <div class="result-title">${esc(result.title)}</div>
+      </div>
+      <div class="result-desc">${esc(result.desc)}</div>
+      <div class="result-hint">${esc(result.hint)}</div>
+      <div class="golden-section">
+        <span class="golden-label">黃金提問句型</span>
+        <div class="golden-title">引導而不替代思考的五句話</div>
+        <ul class="golden-list">${goldenHtml}</ul>
+      </div>
+      <a class="cta-btn" href="${FB_URL}" target="_blank" rel="noopener">認識哲學飯桌 →</a>
+      <button class="reset-btn" id="resetBtn">重新測驗</button>
+    </div>
+    <div class="quiz-footer">© 小朱媽媽的哲學飯桌</div>`;
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    state = { currentQ: 0, answers: [], selected: null, revealed: false, showResult: false };
+    render();
+  });
+}
+
+render();
+</script>
+</body>
+</html>
